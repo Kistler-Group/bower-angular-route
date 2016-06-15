@@ -918,9 +918,11 @@ function ngViewFactory($route, $anchorScroll, $animate) {
           }
         }
 
-        function update() {
+        function update(event) {
           var locals = $route.current && $route.current.locals,
               template = locals && locals.$template;
+
+          if (event && event.defaultPrevented) return;
 
           if (angular.isDefined(template)) {
             var newScope = scope.$new();
